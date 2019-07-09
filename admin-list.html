@@ -1,0 +1,731 @@
+<!--
+*
+*  INSPINIA - Responsive Admin Theme
+*  version 2.9.2
+*
+-->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>База знаний</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+
+    <!-- Toastr style -->
+    <link href="css/plugins/toastr/toastr.min.css" rel="stylesheet">
+
+    <!-- Gritter -->
+    <link href="js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
+
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <link href="css/plugins/bootstrap-select/bootstrap-select.css" rel="stylesheet">
+
+    <style>
+      a:not([href]):not([tabindex]) {
+        color: white;
+        text-decoration: none;
+      }
+      a:not([href]):not([tabindex]):hover {
+        color: white;
+        text-decoration: none;
+      }
+
+      .bootstrap-select-tags-control .btn {
+        margin-right: 3px;
+        margin-bottom: -5px;
+      }
+    </style>
+
+</head>
+
+<body class="full-height-layout">
+
+  <div class="modal inmodal fade" id="myModal2" role="dialog"  aria-hidden="true">
+   <div class="modal-dialog modal-lg">
+       <div class="modal-content">
+           <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Закрыть</span></button>
+               <h4 class="modal-title">Новая статья</h4>
+           </div>
+           <div class="modal-body">
+
+             <div class="form-group">
+               <label class="col-lg-12">Название</label>
+               <div class="col-lg-12 form-group">
+                 <input autofocus type="text" value="" class="form-control" onfocus="var temp_value=this.value; this.value=''; this.value=temp_value">
+              </div>
+            </div>
+
+<div class="row" style="margin: 0;">
+              <div class="col-lg">
+               <label>Раздел</label>
+                 <select title="Все разделы" class="selectpicker form-control" data-style="btn btn-default btn-lg">
+                   <option>Все разделы</option>
+                   <option>Общая информация и документы</option>
+                   <option>Обзор платформы</option>
+                   <option>Работа с сайтом на платформе</option>
+                   <option>Оптимизация и продвижение</option>
+                   <option>Дополнительные модули</option>
+                   <option>Вебинары</option>
+                   <option>Подключение к платформе</option>
+                 </select>
+              </div>
+              <div class="col-lg">
+               <label>Статус</label>
+               <div class="btn-group" style="width: 100%;">
+                  <button style="width: 50%;" class="btn btn-lg btn-primary" type="button">Опубликована</button>
+                  <button style="width: 50%;" class="btn btn-lg btn-white" type="button">Скрыта</button>
+                </div>
+              </div>
+            </div>
+
+<div class="row" style="margin: 16px 0 0 0;">
+            <div class="col-lg">
+              <label>Продукт</label>
+              <select title="Все продукты" class="form-control selectpicker" name="products[]" data-selected-text-format="count > 0" data-live-search="true" data-tags-control="true" multiple data-style="btn-white btn-lg">
+              <option value="1">ЦСО</option>
+              <option value="2">АВН</option>
+              <option value="3">АСП</option>
+              <option value="4">МВ</option>
+              <option value="5">ОО</option>
+              <option value="6">КК</option>
+              <option value="7">SK/NS3+</option>
+              <option value="8">SSL</option>
+              <option value="9">Контент</option>
+              <option value="10">СТА-кнопка</option>
+              <option value="11">Trade-in</option>
+              <option value="12">Аксессуары</option>
+              <option value="13">ТВН</option>
+              <option value="14">КЛ</option>
+              <option value="15">КТО</option>
+              <option value="16">Мультидилер</option>
+              <option value="17">Отзывы</option>
+              <option value="18">Облачное решение</option>
+              <option value="19">Страховка</option>
+            </select>
+           </div>
+
+          <div class="col-lg">
+            <label>Категория</label>
+            <select title="Все категории" class="form-control selectpicker" name="category[]" data-selected-text-format="count > 0" data-live-search="true" data-tags-control="true" multiple data-style="btn-white btn-lg">
+              <option value="1" >Консультация</option>
+              <option value="2" >Организационные вопросы</option>
+              <option value="3" >По ЦСО</option>
+              <option value="4" >Работа с платформой</option>
+              <option value="5" >По модулям</option>
+              <option value="6" >По сторонним решениям</option>
+              <option value="7" >Пожелания</option>
+              <option value="8" >По платформе</option>
+              <option value="9" >По модулям</option>
+              <option value="10" >Ошибка</option>
+              <option value="11" >Центральные проблемы с сайтом</option>
+              <option value="12" >Локальные проблемы с сайтом</option>
+              <option value="13" >Центральные проблемы с модулем</option>
+              <option value="14" >Локальные проблемы с модулем</option>
+              <option value="15" >Инструменты компании</option>
+              <option value="16" >Интеграция</option>
+              <option value="17" >DWS</option>
+              <option value="18" >АВН</option>
+              <option value="19" >АСП</option>
+              <option value="20" >МВ</option>
+              <option value="21" >SSL</option>
+              <option value="22" >КК</option>
+              <option value="23" >SEO-Модуль</option>
+              <option value="24" >E-Comm (ОО/СК/КК/КТО)</option>
+              <option value="25" >Сторонние сервисы</option>
+              <option value="26" >Платные задачи платформы</option>
+              <option value="27" >Информация на сайте</option>
+              <option value="28" >Статичные разделы и меню</option>
+              <option value="29" >Стейджи</option>
+              <option value="30" >Новости</option>
+              <option value="31" >Спецпредложение/ сервиса базовое</option>
+              <option value="32" >Спецпредложение + АВН</option>
+              <option value="33" >SEO оптимизация</option>
+              <option value="34" >Смена хостинга, домена</option>
+              <option value="35" >Настройка редиректов</option>
+              <option value="36" >Проверка сайта</option>
+              <option value="37" >Платные задачи по модулям</option>
+              <option value="38" >Обновление АВН</option>
+              <option value="39" >Обновление АСП</option>
+              <option value="40" >SEO-Модуль</option>
+              <option value="41" >Интеграция со сторонними сервисами</option>
+              <option value="42" >Детализация</option>
+      </select>
+         </div>
+
+        </div>
+
+        <div class="form-group" style="margin-top: 16px;">
+          <label class="col-lg-12">Анонс</label>
+          <div class="col-lg-12 form-group">
+<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+         </div>
+       </div>
+
+       <div class="form-group" style="margin-top: 16px;">
+         <label class="col-lg-12">Текст статьи</label>
+         <div class="col-lg-12 form-group">
+<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+<div style="margin-top: 16px;"><a href="javascript:void(0)"><img style="width: 1.6em; height: 1.6em; margin-right: 8px;" src="https://benweet.github.io/stackedit.js/icon.svg">Открыть StackEdit</a></div>
+        </div>
+      </div>
+
+        </div>
+
+           <div class="modal-footer">
+               <button type="button" class="btn btn-white" data-dismiss="modal">Отмена</button>
+               <button type="button" class="btn btn-primary">Сохранить</button>
+           </div>
+       </div>
+   </div>
+</div>
+
+  <div class="modal inmodal fade" id="myModal" role="dialog"  aria-hidden="true">
+   <div class="modal-dialog modal-lg">
+       <div class="modal-content">
+           <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Закрыть</span></button>
+               <h4 class="modal-title">Редактирование статьи</h4>
+           </div>
+           <div class="modal-body">
+
+             <div class="form-group">
+               <label class="col-lg-12">Название</label>
+               <div class="col-lg-12 form-group">
+                 <input autofocus type="text" value="Как отредактировать информацию о контактах дилерских центров, загрузить туда фотографии и т.д.?" class="form-control" onfocus="var temp_value=this.value; this.value=''; this.value=temp_value">
+              </div>
+            </div>
+
+<div class="row" style="margin: 0;">
+              <div class="col-lg">
+               <label>Раздел</label>
+                 <select title="Все разделы" class="selectpicker form-control" data-style="btn btn-default btn-lg">
+                   <option>Все разделы</option>
+                   <option>Общая информация и документы</option>
+                   <option>Обзор платформы</option>
+                   <option>Работа с сайтом на платформе</option>
+                   <option>Оптимизация и продвижение</option>
+                   <option>Дополнительные модули</option>
+                   <option>Вебинары</option>
+                   <option>Подключение к платформе</option>
+                 </select>
+              </div>
+              <div class="col-lg">
+               <label>Статус</label>
+               <div class="btn-group" style="width: 100%;">
+                  <button style="width: 50%;" class="btn btn-lg btn-primary" type="button">Опубликована</button>
+                  <button style="width: 50%;" class="btn btn-lg btn-white" type="button">Скрыта</button>
+                </div>
+              </div>
+            </div>
+
+<div class="row" style="margin: 16px 0 0 0;">
+            <div class="col-lg">
+              <label>Продукт</label>
+              <select title="Все продукты" class="form-control selectpicker" name="products[]" data-selected-text-format="count > 0" data-live-search="true" data-tags-control="true" multiple data-style="btn-white btn-lg">
+              <option value="1">ЦСО</option>
+              <option value="2">АВН</option>
+              <option value="3">АСП</option>
+              <option value="4">МВ</option>
+              <option value="5">ОО</option>
+              <option value="6">КК</option>
+              <option value="7">SK/NS3+</option>
+              <option value="8">SSL</option>
+              <option value="9">Контент</option>
+              <option value="10">СТА-кнопка</option>
+              <option value="11">Trade-in</option>
+              <option value="12">Аксессуары</option>
+              <option value="13">ТВН</option>
+              <option value="14">КЛ</option>
+              <option value="15">КТО</option>
+              <option value="16">Мультидилер</option>
+              <option value="17">Отзывы</option>
+              <option value="18">Облачное решение</option>
+              <option value="19">Страховка</option>
+            </select>
+           </div>
+
+          <div class="col-lg">
+            <label>Категория</label>
+            <select title="Все категории" class="form-control selectpicker" name="category[]" data-selected-text-format="count > 0" data-live-search="true" data-tags-control="true" multiple data-style="btn-white btn-lg">
+              <option value="1" >Консультация</option>
+              <option value="2" >Организационные вопросы</option>
+              <option value="3" >По ЦСО</option>
+              <option value="4" >Работа с платформой</option>
+              <option value="5" >По модулям</option>
+              <option value="6" >По сторонним решениям</option>
+              <option value="7" >Пожелания</option>
+              <option value="8" >По платформе</option>
+              <option value="9" >По модулям</option>
+              <option value="10" >Ошибка</option>
+              <option value="11" >Центральные проблемы с сайтом</option>
+              <option value="12" >Локальные проблемы с сайтом</option>
+              <option value="13" >Центральные проблемы с модулем</option>
+              <option value="14" >Локальные проблемы с модулем</option>
+              <option value="15" >Инструменты компании</option>
+              <option value="16" >Интеграция</option>
+              <option value="17" >DWS</option>
+              <option value="18" >АВН</option>
+              <option value="19" >АСП</option>
+              <option value="20" >МВ</option>
+              <option value="21" >SSL</option>
+              <option value="22" >КК</option>
+              <option value="23" >SEO-Модуль</option>
+              <option value="24" >E-Comm (ОО/СК/КК/КТО)</option>
+              <option value="25" >Сторонние сервисы</option>
+              <option value="26" >Платные задачи платформы</option>
+              <option value="27" >Информация на сайте</option>
+              <option value="28" >Статичные разделы и меню</option>
+              <option value="29" >Стейджи</option>
+              <option value="30" >Новости</option>
+              <option value="31" >Спецпредложение/ сервиса базовое</option>
+              <option value="32" >Спецпредложение + АВН</option>
+              <option value="33" >SEO оптимизация</option>
+              <option value="34" >Смена хостинга, домена</option>
+              <option value="35" >Настройка редиректов</option>
+              <option value="36" >Проверка сайта</option>
+              <option value="37" >Платные задачи по модулям</option>
+              <option value="38" >Обновление АВН</option>
+              <option value="39" >Обновление АСП</option>
+              <option value="40" >SEO-Модуль</option>
+              <option value="41" >Интеграция со сторонними сервисами</option>
+              <option value="42" >Детализация</option>
+      </select>
+         </div>
+
+        </div>
+
+        <div class="form-group" style="margin-top: 16px;">
+          <label class="col-lg-12">Анонс</label>
+          <div class="col-lg-12 form-group">
+<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+         </div>
+       </div>
+
+       <div class="form-group" style="margin-top: 16px;">
+         <label class="col-lg-12">Текст статьи</label>
+         <div class="col-lg-12 form-group">
+<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+<div style="margin-top: 16px;"><a href="javascript:void(0)"><img style="width: 1.6em; height: 1.6em; margin-right: 8px;" src="https://benweet.github.io/stackedit.js/icon.svg">Открыть StackEdit</a></div>
+        </div>
+      </div>
+
+        </div>
+
+           <div class="modal-footer">
+               <button type="button" class="btn btn-white" data-dismiss="modal">Отмена</button>
+               <button type="button" class="btn btn-primary">Сохранить</button>
+           </div>
+       </div>
+   </div>
+</div>
+
+    <div id="wrapper">
+        <nav class="navbar-default navbar-static-side" role="navigation">
+          <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 100%;"></div>
+        </nav>
+
+        <div id="page-wrapper" class="gray-bg dashbard-1" style="height: 100; overflow-y: scroll;">
+          <div class="row border-bottom">
+            <nav class="navbar navbar-static-top" role="navigation" style="padding: 20px; justify-content: start;">
+              <a class="navbar-minimalize minimalize-styl-1 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+              <a class="btn btn-warning header-button-list-item" style="margin-left: 10px;" href=""><i class="fa fa-reply"></i>&nbsp;Вернуться в трекер</a>
+              <button data-toggle="dropdown" style="padding: 4px 12px; margin-left: 10px;" class="btn btn-primary dropdown-toggle" aria-expanded="false">Панель управления</button>
+            </nav>
+          </div>
+
+          <div class="row dashboard-header" style="padding: 10px;">
+
+                    <div class="col-md-12">
+                      <div class="input-group" style="margin-top: 20px">
+                        <input type="text" class="form-control" placeholder="Ключевое слово или фраза"><span class="input-group-append"><button type="button" class="btn btn-primary">Найти!</button></span>
+                      </div>
+                    </div>
+
+          </div>
+
+          <div class="col-lg-12" style="padding-left: 10px; padding-right: 10px;">
+                <div style="margin-top: 20px; display: flex; flex-direction: row; justify-content: space-between; align-items: center;">
+                  <div>
+                      <select title="Все разделы" class="selectpicker" data-style="btn btn-default btn-lg" data-width="300px">
+                        <option>Все разделы</option>
+                        <option>Общая информация и документы</option>
+                        <option>Обзор платформы</option>
+                        <option>Работа с сайтом на платформе</option>
+                        <option>Оптимизация и продвижение</option>
+                        <option>Дополнительные модули</option>
+                        <option>Вебинары</option>
+                        <option>Подключение к платформе</option>
+                      </select>
+                  </div>
+                  <div>
+                    <a href="" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal2" style="margin-right: 16px;"><i class="fa fa-plus-circle"></i> Новая статья</a>
+                    <a href="admin-sections.html" class="btn btn-lg btn-default"><i class="fa fa-pencil" aria-hidden="true"></i> Редактировать разделы</a>
+                  </div>
+                </div>
+          </div>
+
+
+          <div class="row" style="padding-top: 20px; padding-left: 10px; padding-right: 10px; padding-bottom: 80px;">
+                              <div class="col-lg-12">
+
+                              <div class="ibox-content border-bottom" style="padding: 0px;">
+
+                                  <table class="table">
+                                    <tbody>
+
+                                      <tr s class="ibox-title">
+                                        <td class="project-title" width=100% style="border-top: none; padding: 20px;">
+
+                                          <div>
+                                            Сортировка: <a href="" data-toggle="dropdown" style="line-height: 32px; font-weight: 400; font-size: 13px;"><span style="text-decoration: underline; text-decoration-style: dotted;">дата и время</span> <i class="fa fa-sort-amount-desc"></i></a>
+                                            <ul class="dropdown-menu float-right" x-placement="bottom-start" style="position: absolute; top: 35px; left: 691px; will-change: top, left;">
+                                              <li><a href="#">дата и время - сначала новые</a></li>
+                                              <li><a href="#">дата и время - сначала старые</a></li>
+                                              <li class="dropdown-divider"></li>
+                                              <li><a href="#">рейтинг - по возрастанию</a></li>
+                                              <li><a href="#">рейтинг - по убыванию</a></li>
+                                            </ul>
+                                          </div>
+                                        </td>
+                                        <td style="border-top: none; padding: 20px;">
+                                        </td>
+                                        <td style="border-top: none; padding: 20px; line-height: 32px;">
+
+
+                                          <div>
+                                            <select title="Все продукты" class="form-control selectpicker" name="products[]" data-width="fit" data-selected-text-format="count > 0" data-live-search="true" data-tags-control="true" multiple data-style="btn-white btn-sm">
+                                            <option value="1">ЦСО</option>
+                                            <option value="2">АВН</option>
+                                            <option value="3">АСП</option>
+                                            <option value="4">МВ</option>
+                                            <option value="5">ОО</option>
+                                            <option value="6">КК</option>
+                                            <option value="7">SK/NS3+</option>
+                                            <option value="8">SSL</option>
+                                            <option value="9">Контент</option>
+                                            <option value="10">СТА-кнопка</option>
+                                            <option value="11">Trade-in</option>
+                                            <option value="12">Аксессуары</option>
+                                            <option value="13">ТВН</option>
+                                            <option value="14">КЛ</option>
+                                            <option value="15">КТО</option>
+                                            <option value="16">Мультидилер</option>
+                                            <option value="17">Отзывы</option>
+                                            <option value="18">Облачное решение</option>
+                                            <option value="19">Страховка</option>
+                                          </select>
+                                          </div>
+
+                                        </td>
+                                        <td style="border-top: none; padding: 20px; padding-left: 0px; line-height: 32px;">
+
+                                          <div>
+                                            <select title="Все категории" class="form-control selectpicker" name="category[]" data-width="fit" data-selected-text-format="count > 0" data-live-search="true" data-tags-control="true" multiple data-style="btn-white btn-sm">
+                                              <option value="1" >Консультация</option>
+                                              <option value="2" >Организационные вопросы</option>
+                                              <option value="3" >По ЦСО</option>
+                                              <option value="4" >Работа с платформой</option>
+                                              <option value="5" >По модулям</option>
+                                              <option value="6" >По сторонним решениям</option>
+                                              <option value="7" >Пожелания</option>
+                                              <option value="8" >По платформе</option>
+                                              <option value="9" >По модулям</option>
+                                              <option value="10" >Ошибка</option>
+                                              <option value="11" >Центральные проблемы с сайтом</option>
+                                              <option value="12" >Локальные проблемы с сайтом</option>
+                                              <option value="13" >Центральные проблемы с модулем</option>
+                                              <option value="14" >Локальные проблемы с модулем</option>
+                                              <option value="15" >Инструменты компании</option>
+                                              <option value="16" >Интеграция</option>
+                                              <option value="17" >DWS</option>
+                                              <option value="18" >АВН</option>
+                                              <option value="19" >АСП</option>
+                                              <option value="20" >МВ</option>
+                                              <option value="21" >SSL</option>
+                                              <option value="22" >КК</option>
+                                              <option value="23" >SEO-Модуль</option>
+                                              <option value="24" >E-Comm (ОО/СК/КК/КТО)</option>
+                                              <option value="25" >Сторонние сервисы</option>
+                                              <option value="26" >Платные задачи платформы</option>
+                                              <option value="27" >Информация на сайте</option>
+                                              <option value="28" >Статичные разделы и меню</option>
+                                              <option value="29" >Стейджи</option>
+                                              <option value="30" >Новости</option>
+                                              <option value="31" >Спецпредложение/ сервиса базовое</option>
+                                              <option value="32" >Спецпредложение + АВН</option>
+                                              <option value="33" >SEO оптимизация</option>
+                                              <option value="34" >Смена хостинга, домена</option>
+                                              <option value="35" >Настройка редиректов</option>
+                                              <option value="36" >Проверка сайта</option>
+                                              <option value="37" >Платные задачи по модулям</option>
+                                              <option value="38" >Обновление АВН</option>
+                                              <option value="39" >Обновление АСП</option>
+                                              <option value="40" >SEO-Модуль</option>
+                                              <option value="41" >Интеграция со сторонними сервисами</option>
+                                              <option value="42" >Детализация</option>
+                                      </select>
+                                    </div>
+
+                                        </td>
+                                        <td nowrap style="padding: 20px; padding-left: 0px; border-top: none;">
+								                        </td>
+                                      </tr>
+
+                                      <tr>
+                                        <td class="project-title" width=100% style="padding: 20px;">
+                                          <a href="article.html" class="faq-question" style="margin-bottom: 10px;">Как отредактировать информацию о контактах дилерских центров, загрузить туда фотографии и т.д.?</a>
+                                          <p class="text-muted" style="font-size: 12px; margin-bottom: 0px;"><i class="fa fa-clock-o"></i> 27.05.2019 16:05 <i class="fa fa-user" style="margin-left: 10px;"></i> Андрей Пушкин</p>
+                                        </td>
+                                        <td style="padding: 20px;">
+                                          <!-- <i class="fa fa-check"></i> -->
+                                        </td>
+                                        <td style="padding: 20px;">
+                                          <ul class="tag-list" style="padding: 0">
+                                            <li><a href="">Контент</a></li>
+                                          </ul>
+                                        </td>
+                                        <td nowrap style="padding: 20px; padding-left: 0px;">
+                                          <ul class="tag-list" style="padding: 0;">
+                                            <li><a href="">Информация на сайте</a></li>
+                                            <li><a href="">ЦСО</a></li>
+                                          </ul>
+                                        </td>
+                                        <td nowrap style="padding: 20px; padding-left: 0px;">
+                                          <a href="" class="btn btn-default" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil" aria-hidden="true"></i> Редактировать</a>
+                                          <button class="btn btn-default" data-button-delete="" data-page-id="3" style="margin-left: 5px;"><i class="fa fa-trash" aria-hidden="true"></i></button>
+								                        </td>
+                                      </tr>
+
+                                      <tr>
+                                        <td class="project-title" style="padding: 20px;">
+                                          <a href="article.html" class="faq-question" style="margin-bottom: 10px;">Как отредактировать список отделов?</a>
+                                          <p class="text-muted" style="font-size: 12px; margin-bottom: 0px;"><i class="fa fa-clock-o"></i> 27.05.2019 16:05 <i class="fa fa-user" style="margin-left: 10px;"></i> Дарья Левитская</p>
+                                        </td>
+                                        <td style="padding: 20px;">
+                                          <!-- <i class="fa fa-check"></i> -->
+                                        </td>
+                                        <td style="padding: 20px;">
+                                          <ul class="tag-list" style="padding: 0">
+                                            <li><a href="">Контент</a></li>
+                                          </ul>
+                                        </td>
+                                        <td nowrap style="padding: 20px; padding-left: 0px;">
+                                          <ul class="tag-list" style="padding: 0;">
+                                            <li><a href="">Информация на сайте</a></li>
+                                            <li><a href="">ЦСО</a></li>
+                                          </ul>
+                                        </td>
+                                        <td style="padding: 20px; padding-left: 0px;">
+                                          <a href="" class="btn btn-default" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil" aria-hidden="true"></i> Редактировать</a>
+                                          <button class="btn btn-default" data-button-delete="" data-page-id="3" style="margin-left: 5px;"><i class="fa fa-trash" aria-hidden="true"></i></button>
+								                        </td>
+                                      </tr>
+
+                                      <tr>
+                                        <td class="project-title" style="padding: 20px;">
+                                          <a href="article.html" class="faq-question" style="margin-bottom: 10px;">Как добавить/удалить сотрудников, загрузить фотографии и прочее?</a>
+                                          <p class="text-muted" style="font-size: 12px; margin-bottom: 0px;"><i class="fa fa-clock-o"></i> 27.05.2019 16:05 <i class="fa fa-user" style="margin-left: 10px;"></i> Дарья Левитская</p>
+                                        </td>
+                                        <td style="padding: 20px;">
+                                          <div class="tooltip-demo">
+                                            <i style="margin-top: 10px; font-size: 16px;" data-toggle="tooltip" data-placement="left" title="" data-original-title="Не опубликована" class="fa fa-eye-slash"></i>
+                                          </div>
+                                        </td>
+                                        <td style="padding: 20px;">
+                                          <ul class="tag-list" style="padding: 0">
+                                            <li><a href="">Контент</a></li>
+                                          </ul>
+                                        </td>
+                                        <td nowrap style="padding: 20px; padding-left: 0px;">
+                                          <ul class="tag-list" style="padding: 0;">
+                                            <li><a href="">Обновление статичных разделов и меню</a></li>
+                                          </ul>
+                                        </td>
+                                        <td style="padding: 20px; padding-left: 0px;">
+                                          <a href="" class="btn btn-default" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil" aria-hidden="true"></i> Редактировать</a>
+                                          <button class="btn btn-default" data-button-delete="" data-page-id="3" style="margin-left: 5px;"><i class="fa fa-trash" aria-hidden="true"></i></button>
+								                        </td>
+                                      </tr>
+
+                                      <tr>
+                                        <td class="project-title" style="padding: 20px;">
+                                          <a href="article.html" class="faq-question" style="margin-bottom: 10px;">Как добавить стейдж?</a>
+                                          <p class="text-muted" style="font-size: 12px; margin-bottom: 0px;"><i class="fa fa-clock-o"></i> 27.05.2019 16:05 <i class="fa fa-user" style="margin-left: 10px;"></i> Дарья Левитская</p>
+                                        </td>
+                                        <td style="padding: 20px;">
+                                        </td>
+                                        <td style="padding: 20px;">
+                                          <ul class="tag-list" style="padding: 0">
+                                            <li><a href="">ЦСО</a></li>
+                                          </ul>
+                                        </td>
+                                        <td nowrap style="padding: 20px; padding-left: 0px;">
+                                          <ul class="tag-list" style="padding: 0;">
+                                            <li><a href="">SEO-модуль</a></li>
+                                          </ul>
+                                        </td>
+                                        <td style="padding: 20px; padding-left: 0px;">
+                                          <a href="" class="btn btn-default" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil" aria-hidden="true"></i> Редактировать</a>
+                                          <button class="btn btn-default" data-button-delete="" data-page-id="3" style="margin-left: 5px;"><i class="fa fa-trash" aria-hidden="true"></i></button>
+								                        </td>
+                                      </tr>
+
+                                      <tr>
+                                        <td class="project-title" style="padding: 20px;">
+                                          <a href="article.html" class="faq-question" style="margin-bottom: 10px;">Как добавить спецпредложение?</a>
+                                          <p class="text-muted" style="font-size: 12px; margin-bottom: 0px;"><i class="fa fa-clock-o"></i> 27.05.2019 16:05 <i class="fa fa-user" style="margin-left: 10px;"></i> Дарья Левитская</p>
+                                        </td>
+                                        <td style="padding: 20px;">
+                                        </td>
+                                        <td style="padding: 20px;">
+                                          <ul class="tag-list" style="padding: 0">
+                                            <li><a href="">Контент</a></li>
+                                          </ul>
+                                        </td>
+                                        <td nowrap style="padding: 20px; padding-left: 0px;">
+                                          <ul class="tag-list" style="padding: 0;">
+                                            <li><a href="">SEO-модуль</a></li>
+                                          </ul>
+                                        </td>
+                                        <td style="padding: 20px; padding-left: 0px;">
+                                          <a href="" class="btn btn-default" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil" aria-hidden="true"></i> Редактировать</a>
+                                          <button class="btn btn-default" data-button-delete="" data-page-id="3" style="margin-left: 5px;"><i class="fa fa-trash" aria-hidden="true"></i></button>
+								                        </td>
+                                      </tr>
+
+                                      <tr>
+                                        <td class="project-title" style="padding: 20px;">
+                                          <a href="article.html" class="faq-question" style="margin-bottom: 10px;">Как добавить новую страницу?</a>
+                                          <p class="text-muted" style="font-size: 12px; margin-bottom: 0px;"><i class="fa fa-clock-o"></i> 27.05.2019 16:05 <i class="fa fa-user" style="margin-left: 10px;"></i> Дарья Левитская</p>
+                                        </td>
+                                        <td style="padding: 20px; padding-left: 0px;">
+                                          <!-- <i class="fa fa-check"></i> -->
+                                        </td>
+                                        <td style="padding: 20px;">
+                                          <ul class="tag-list" style="padding: 0">
+                                            <li><a href="">ЦСО</a></li>
+                                          </ul>
+                                        </td>
+                                        <td nowrap style="padding: 20px; padding-left: 0px;">
+                                          <ul class="tag-list" style="padding: 0;">
+                                            <li><a href="">Стейджи</a></li>
+                                            <li><a href="">Новости</a></li>
+                                            <li><a href="">Спецпредложение / сервиса базовое</a></li>
+                                          </ul>
+                                        </td>
+                                        <td style="padding: 20px; padding-left: 0px;">
+                                          <a href="" class="btn btn-default" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil" aria-hidden="true"></i> Редактировать</a>
+                                          <button class="btn btn-default" data-button-delete="" data-page-id="3" style="margin-left: 5px;"><i class="fa fa-trash" aria-hidden="true"></i></button>
+								                        </td>
+                                      </tr>
+
+                                      <tr>
+                                        <td class="project-title" style="padding: 20px;">
+                                          <a href="article.html" class="faq-question" style="margin-bottom: 10px;">Как вывести «автомобили в наличии» в акции?</a>
+                                          <p class="text-muted" style="font-size: 12px; margin-bottom: 0px;"><i class="fa fa-clock-o"></i> 27.05.2019 16:05 <i class="fa fa-user" style="margin-left: 10px;"></i> Дарья Левитская</p>
+                                        </td>
+                                        <td style="padding: 20px;font-size: 16px;">
+                                          <div class="tooltip-demo">
+                                            <i style="margin-top: 10px;" data-toggle="tooltip" data-placement="left" title="" data-original-title="Не опубликована" class="fa fa-eye-slash"></i>
+                                          </div>
+                                        </td>
+                                        <td style="padding: 20px;">
+                                          <ul class="tag-list" style="padding: 0">
+                                            <li><a href="">Контент</a></li>
+                                          </ul>
+                                        </td>
+                                        <td nowrap style="padding: 20px; padding-left: 0px;">
+                                          <ul class="tag-list" style="padding: 0;">
+                                            <li><a href="">Новости</a></li>
+                                          </ul>
+                                        </td>
+                                        <td style="padding: 20px; padding-left: 0px;">
+                                          <a href="" class="btn btn-default" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil" aria-hidden="true"></i> Редактировать</a>
+                                          <button class="btn btn-default" data-button-delete="" data-page-id="3" style="margin-left: 5px;"><i class="fa fa-trash" aria-hidden="true"></i></button>
+								                        </td>
+                                      </tr>
+
+                                      <tr>
+                                        <td class="project-title" style="padding: 20px;" style="padding: 20px;">
+                                          <a href="article.html" class="faq-question" style="margin-bottom: 10px;">Как изменить список автомобилей, доступных для тест-драйва?</a>
+                                          <p class="text-muted" style="font-size: 12px; margin-bottom: 0px;"><i class="fa fa-clock-o"></i> 27.05.2019 16:05 <i class="fa fa-user" style="margin-left: 10px;"></i> Дарья Левитская</p>
+                                        </td>
+                                        <td style="padding: 20px;">
+                                        </td>
+                                        <td style="padding: 20px;">
+                                          <ul class="tag-list" style="padding: 0">
+                                            <li><a href="">Контент</a></li>
+                                          </ul>
+                                        </td>
+                                        <td nowrap style="padding: 20px; padding-left: 0px;">
+                                          <ul class="tag-list" style="padding: 0;">
+                                            <li><a href="">Стейджи</a></li>
+                                          </ul>
+                                        </td>
+                                        <td style="padding: 20px; padding-left: 0px;">
+                                          <a href="" class="btn btn-default" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil" aria-hidden="true"></i> Редактировать</a>
+                                          <button class="btn btn-default" data-button-delete="" data-page-id="3" style="margin-left: 5px;"><i class="fa fa-trash" aria-hidden="true"></i></button>
+								                        </td>
+                                      </tr>
+
+                                      <tr>
+                                        <td class="project-title" style="padding: 20px;">
+                                          <a href="article.html" class="faq-question" style="margin-bottom: 10px;">Как добавить дисклеймер в текст?</a>
+                                          <p class="text-muted" style="font-size: 12px; margin-bottom: 0px;"><i class="fa fa-clock-o"></i> 27.05.2019 16:05 <i class="fa fa-user" style="margin-left: 10px;"></i> Дарья Левитская</p>
+                                        </td>
+                                        <td style="padding: 20px;">
+                                          <!-- <i class="fa fa-check"></i> -->
+                                        </td>
+                                        <td style="padding: 20px;">
+                                          <ul class="tag-list" style="padding: 0">
+                                            <li><a href="">Контент</a></li>
+                                          </ul>
+                                        </td>
+                                        <td nowrap style="padding: 20px; padding-left: 0px;">
+                                          <ul class="tag-list" style="padding: 0;">
+                                            <li><a href="">Информация на сайте</a></li>
+                                            <li><a href="">ЦСО</a></li>
+                                          </ul>
+                                        </td>
+                                        <td style="padding: 20px; padding-left: 0px;">
+                                          <a href="" class="btn btn-default" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil" aria-hidden="true"></i> Редактировать</a>
+                                          <button class="btn btn-default" data-button-delete="" data-page-id="3" style="margin-left: 5px;"><i class="fa fa-trash" aria-hidden="true"></i></button>
+								                        </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+
+                              </div>
+                            </div>
+                          </div>
+
+        </div>
+    </div>
+
+
+    <!-- Mainly scripts -->
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="js/plugins/bootstrap-select/bootstrap-select.js"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="js/inspinia.js"></script>
+    <script src="js/plugins/pace/pace.min.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,390 @@
+<!--
+*
+*  INSPINIA - Responsive Admin Theme
+*  version 2.9.2
+*
+-->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>База знаний</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+
+    <!-- Toastr style -->
+    <link href="css/plugins/toastr/toastr.min.css" rel="stylesheet">
+
+    <!-- Gritter -->
+    <link href="js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
+
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <link href="css/plugins/bootstrap-select/bootstrap-select.css" rel="stylesheet">
+
+    <style>
+      a:not([href]):not([tabindex]) {
+        color: white;
+        text-decoration: none;
+      }
+      a:not([href]):not([tabindex]):hover {
+        color: white;
+        text-decoration: none;
+      }
+
+      .bootstrap-select-tags-control .btn {
+        margin-right: 3px;
+        margin-bottom: -5px;
+      }
+
+      .dd-handle {
+        width: 32px;
+        border: 0;
+        margin: 0;
+        padding: 0;
+        background-color: rgba(0, 0, 0, 0);
+      }
+
+      .dd-handle:hover {
+        background-color: #ddd;
+      }
+
+      .dd3-handle {
+        position: absolute;
+        line-height: 32px;
+        margin: 0;
+        top: 8px;
+        cursor: pointer;
+        width: 30px;
+        text-indent: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+
+      /* .dd3-handle:hover {
+        background-color: #ddd;
+      } */
+
+      .dd3-handle:before {
+        content: '≡';
+        display: block;
+        left: 9px;
+        position: absolute;
+        text-indent: 0;
+        font-size: 20px;
+        width: 30px;
+        font-weight: normal;
+      }
+
+      .dd3-content {
+        padding-left: 80px;
+        line-height: 48px;
+        font-size: 14px;
+      }
+
+      li ol li .dd3-content {
+        padding-left: 48px;
+        border-top: solid 1px lightgrey;
+      }
+
+      .dd3-item {
+        /* padding: 5px 0 5px 0; */
+        /* margin-top: 5px;
+        margin-bottom: 5px; */
+      }
+
+      .dd3-content:hover {
+        background-color: #ddd;
+      }
+
+      .dd-item > button {
+        position: absolute;
+        font-size: 18px;
+        left: 40px;
+        height: 32px;
+        width: 30px;
+        margin-top: 8px;
+        margin-bottom: 0px;
+        border-radius: 3px;
+      }
+
+      .dd-item > button:hover {
+        background-color: #ddd;
+      }
+
+      .dd-list .dd-list {
+        padding-left: 80px;
+      }
+
+      .section {
+        font-size: 18px;
+      }
+
+      .section_wrapper {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .section_wrapper:hover {
+        background-color: #ddd;
+      }
+
+    </style>
+
+</head>
+
+<body class="full-height-layout">
+
+  <div class="modal inmodal fade" id="myModal" role="dialog"  aria-hidden="true">
+   <div class="modal-dialog modal-lg">
+       <div class="modal-content">
+           <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Закрыть</span></button>
+               <h4 class="modal-title">Редактирование раздела</h4>
+           </div>
+           <div class="modal-body">
+             <div class="form-group">
+               <label class="col-lg-12" style="text-align: center;">Наименование раздела</label>
+               <div class="col-lg-12">
+                 <input autofocus type="text" value="Общая информация и документы" class="form-control" onfocus="var temp_value=this.value; this.value=''; this.value=temp_value">
+              </div>
+            </div>
+           </div>
+
+           <div class="modal-footer">
+               <button type="button" class="btn btn-white" data-dismiss="modal">Отмена</button>
+               <button type="button" class="btn btn-primary">Сохранить</button>
+           </div>
+       </div>
+   </div>
+</div>
+
+<div class="modal inmodal fade" id="myModal2" role="dialog"  aria-hidden="true">
+ <div class="modal-dialog modal-lg">
+     <div class="modal-content">
+         <div class="modal-header">
+             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Закрыть</span></button>
+             <h4 class="modal-title">Новый раздел</h4>
+         </div>
+         <div class="modal-body">
+           <div class="form-group">
+             <label class="col-lg-12" style="text-align: center;">Наименование раздела</label>
+             <div class="col-lg-12">
+               <input autofocus type="text" value="" class="form-control" onfocus="var temp_value=this.value; this.value=''; this.value=temp_value">
+            </div>
+          </div>
+         </div>
+
+         <div class="modal-footer">
+             <button type="button" class="btn btn-white" data-dismiss="modal">Отмена</button>
+             <button type="button" class="btn btn-primary">Создать</button>
+         </div>
+     </div>
+ </div>
+</div>
+
+    <div id="wrapper">
+      <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 100%;"></div>
+      </nav>
+
+      <div id="page-wrapper" class="gray-bg dashbard-1" style="height: 100; overflow-y: scroll;">
+        <div class="row border-bottom">
+          <nav class="navbar navbar-static-top" role="navigation" style="padding: 20px; justify-content: start;">
+            <a class="navbar-minimalize minimalize-styl-1 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+            <a class="btn btn-warning header-button-list-item" style="margin-left: 10px;" href=""><i class="fa fa-reply"></i>&nbsp;Вернуться в трекер</a>
+            <button data-toggle="dropdown" style="padding: 4px 12px; margin-left: 10px;" class="btn btn-primary dropdown-toggle" aria-expanded="false">Панель управления</button>
+          </nav>
+        </div>
+
+          <div style="margin-top: 20px;"><a href="javascript:history.back(-1);" class="btn btn-white btn-bitbucket btn-lg"><i class="fa fa-arrow-left"></i> Назад</a></div>
+
+          <div style="padding: 0 5px 0 5px; display: flex; flex-direction: row; justify-content: space-between; align-items: center;">
+            <div style="display: flex; align-items: stretch; padding: 0 40px 20px 0;">
+              <div>
+                <h2><b>Редактирование разделов</b></h2>
+                <p>Вы можете менять порядок разделов и статей внутри каждого из них, редактировать названия и создавать новые.</p>
+              </div>
+            </div>
+            <div>
+              <button  data-toggle="modal" data-target="#myModal2" class="btn btn-primary btn-lg"><i class="fa fa-plus-circle"></i> Новый раздел</button>
+            </div>
+          </div>
+
+          <div class="cf nestable-lists" style="border-bottom: none;">
+
+                  <div class="dd" id="nestable3">
+                      <ol class="dd-list">
+
+                        <li style="border-bottom: solid 1px lightgrey;" class="dd-item dd3-item" data-id="15">
+                            <div class="dd-handle dd3-handle">D</div>
+                            <div class="section_wrapper">
+                              <div class="dd3-content section">Общая информация и документы</div>
+                              <div><button style="margin-right: 10px;" data-toggle="modal" data-target="#myModal" class="btn btn-default btn-sm"><i class="fa fa-pencil"></i> Редактировать</button></div>
+                            </div>
+                            <ol class="dd-list" style="display: none;">
+                                <li class="dd-item dd3-item" data-id="16">
+                                    <div class="dd-handle dd3-handle">D</div><div class="dd3-content">Модуль Kodix.Контент - основная информация</div>
+                                </li>
+                                <li class="dd-item dd3-item" data-id="17">
+                                    <div class="dd-handle dd3-handle">D</div><div class="dd3-content">Спецпредложения</div>
+                                </li>
+                                <li class="dd-item dd3-item" data-id="18">
+                                    <div class="dd-handle dd3-handle">D</div><div class="dd3-content">Стейджи</div>
+                                </li>
+                            </ol>
+                        </li>
+                          <li style="border-bottom: solid 1px lightgrey;" class="dd-item dd3-item" data-id="15">
+                              <div class="dd-handle dd3-handle">D</div>
+                              <div class="section_wrapper">
+                                <div class="dd3-content section">Обзор платформы</div>
+                                <div><button style="margin-right: 10px;" data-toggle="modal" data-target="#myModal" class="btn btn-default btn-sm"><i class="fa fa-pencil"></i> Редактировать</button></div>
+                              </div>
+                              <ol class="dd-list">
+                                  <li class="dd-item dd3-item" data-id="16">
+                                      <div class="dd-handle dd3-handle">D</div><div class="dd3-content">Новости</div>
+                                  </li>
+                                  <li class="dd-item dd3-item" data-id="17">
+                                      <div class="dd-handle dd3-handle">D</div><div class="dd3-content">Создание страницы</div>
+                                  </li>
+                                  <li class="dd-item dd3-item" data-id="18">
+                                      <div class="dd-handle dd3-handle">D</div><div class="dd3-content">Создание ссылки</div>
+                                  </li>
+                              </ol>
+                          </li>
+                          <li style="border-bottom: solid 1px lightgrey;" class="dd-item dd3-item" data-id="15">
+                              <div class="dd-handle dd3-handle">D</div>
+                              <div class="section_wrapper">
+                                <div class="dd3-content section">Работа с сайтом на платформе</div>
+                                <div><button style="margin-right: 10px;" data-toggle="modal" data-target="#myModal" class="btn btn-default btn-sm"><i class="fa fa-pencil"></i> Редактировать</button></div>
+                              </div>
+                              <ol class="dd-list">
+                                  <li class="dd-item dd3-item" data-id="16">
+                                      <div class="dd-handle dd3-handle">D</div><div class="dd3-content">Настройки марки</div>
+                                  </li>
+                                  <li class="dd-item dd3-item" data-id="17">
+                                      <div class="dd-handle dd3-handle">D</div><div class="dd3-content">Список дилерских центров</div>
+                                  </li>
+                                  <li class="dd-item dd3-item" data-id="18">
+                                      <div class="dd-handle dd3-handle">D</div><div class="dd3-content">Список отзывов</div>
+                                  </li>
+                              </ol>
+                          </li>
+                          <li style="border-bottom: solid 1px lightgrey;" class="dd-item dd3-item" data-id="15">
+                              <div class="dd-handle dd3-handle">D</div>
+                              <div class="section_wrapper">
+                                <div class="dd3-content section">Оптимизация и продвижение</div>
+                                <div><button style="margin-right: 10px;" data-toggle="modal" data-target="#myModal" class="btn btn-default btn-sm"><i class="fa fa-pencil"></i> Редактировать</button></div>
+                              </div>
+                              <ol class="dd-list">
+                                  <li class="dd-item dd3-item" data-id="16">
+                                      <div class="dd-handle dd3-handle">D</div><div class="dd3-content">Дополнительные модули</div>
+                                  </li>
+                                  <li class="dd-item dd3-item" data-id="17">
+                                      <div class="dd-handle dd3-handle">D</div><div class="dd3-content">Список вакансий</div>
+                                  </li>
+                                  <li class="dd-item dd3-item" data-id="18">
+                                      <div class="dd-handle dd3-handle">D</div><div class="dd3-content">Подключение счетчиков и виджетов</div>
+                                  </li>
+                              </ol>
+                          </li>
+                          <li style="border-bottom: solid 1px lightgrey;" class="dd-item dd3-item" data-id="15">
+                              <div class="dd-handle dd3-handle">D</div>
+                              <div class="section_wrapper">
+                                <div class="dd3-content section">Дополнительные модули</div>
+                                <div><button style="margin-right: 10px;" data-toggle="modal" data-target="#myModal" class="btn btn-default btn-sm"><i class="fa fa-pencil"></i> Редактировать</button></div>
+                              </div>
+                              <ol class="dd-list">
+                                  <li class="dd-item dd3-item" data-id="16">
+                                      <div class="dd-handle dd3-handle">D</div><div class="dd3-content">Веб-формы - общая информация</div>
+                                  </li>
+                                  <li class="dd-item dd3-item" data-id="17">
+                                      <div class="dd-handle dd3-handle">D</div><div class="dd3-content">Создание формы</div>
+                                  </li>
+                                  <li class="dd-item dd3-item" data-id="18">
+                                      <div class="dd-handle dd3-handle">D</div><div class="dd3-content">Работа с центральным контентом</div>
+                                  </li>
+                              </ol>
+                          </li>
+                          <li style="border-bottom: solid 1px lightgrey;" class="dd-item dd3-item" data-id="15">
+                              <div class="dd-handle dd3-handle">D</div>
+                              <div class="section_wrapper">
+                                <div class="dd3-content section">Вебинары</div>
+                                <div><button style="margin-right: 10px;" data-toggle="modal" data-target="#myModal" class="btn btn-default btn-sm"><i class="fa fa-pencil"></i> Редактировать</button></div>
+                              </div>
+                              <ol class="dd-list">
+                                  <li class="dd-item dd3-item" data-id="16">
+                                      <div class="dd-handle dd3-handle">D</div><div class="dd3-content">Список отделов</div>
+                                  </li>
+                                  <li class="dd-item dd3-item" data-id="17">
+                                      <div class="dd-handle dd3-handle">D</div><div class="dd3-content">Список сотрудников</div>
+                                  </li>
+                                  <li class="dd-item dd3-item" data-id="18">
+                                      <div class="dd-handle dd3-handle">D</div><div class="dd3-content">Требования к изображениям</div>
+                                  </li>
+                              </ol>
+                          </li>
+                          <li style="border-bottom: solid 1px lightgrey;" class="dd-item dd3-item" data-id="15">
+                              <div class="dd-handle dd3-handle">D</div>
+                              <div class="section_wrapper">
+                                <div class="dd3-content section">Подключение к платформе</div>
+                                <div><button style="margin-right: 10px;" data-toggle="modal" data-target="#myModal" class="btn btn-default btn-sm"><i class="fa fa-pencil"></i> Редактировать</button></div>
+                              </div>
+                              <ol class="dd-list">
+                                  <li class="dd-item dd3-item" data-id="16">
+                                      <div class="dd-handle dd3-handle">D</div><div class="dd3-content">Системные требования</div>
+                                  </li>
+                                  <li class="dd-item dd3-item" data-id="17">
+                                      <div class="dd-handle dd3-handle">D</div><div class="dd3-content">Блочный редактор</div>
+                                  </li>
+                                  <li class="dd-item dd3-item" data-id="18">
+                                      <div class="dd-handle dd3-handle">D</div><div class="dd3-content">Редактирование спецпредложений и новостей</div>
+                                  </li>
+                              </ol>
+                          </li>
+                      </ol>
+                  </div>
+
+              </div>
+
+
+        </div>
+    </div>
+
+    <!-- Mainly scripts -->
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="js/plugins/bootstrap-select/bootstrap-select.js"></script>
+    <script src="js/plugins/nestable/jquery.nestable.js"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="js/inspinia.js"></script>
+    <script src="js/plugins/pace/pace.min.js"></script>
+
+    <script>
+
+    $(document).ready(function()
+    {
+
+        $('#nestable3').nestable();
+        $('#nestable3').nestable('collapseAll');
+
+    });
+    </script>
+
+
+</body>
+</html>
